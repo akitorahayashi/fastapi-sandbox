@@ -1,0 +1,62 @@
+[project]
+name = "fastapi-sandbox"
+version = "0.1.0"
+description = "A minimal FastAPI sandbox environment."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115.12",
+    "uvicorn>=0.34.2",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+    "ruff>=0.13.1",
+    "pytest>=8.4.2",
+    "requests>=2.32.3",
+    "python-dotenv>=1.1.1",
+]
+
+[tool.pytest.ini_options]
+python_files = "test_*.py"
+testpaths = ["tests"]
+
+[tool.black]
+target-version = ['py312']
+exclude = '''
+/(
+    \.git
+    | \.mypy_cache
+    | \.venv
+    | venv
+    | env
+    | build
+    | dist
+    | .*/(bin|lib|share|etc)
+    | .*/pyvenv\.cfg
+)/
+'''
+
+
+[tool.ruff]
+target-version = "py312"
+
+exclude = [
+	"__pycache__",
+	"migrations",
+	"db.sqlite3",
+	"*.pyc",
+	".venv",
+	"venv",
+	"env",
+	"*/bin/**",
+	"*/lib/**",
+	"*/share/**",
+	"*/etc/**",
+	"*/pyvenv.cfg"
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+# E501 (line too long) and F841 (unused variable) are ignored
+ignore = ["E501", "F841"]
