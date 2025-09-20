@@ -21,11 +21,11 @@ A minimal FastAPI sandbox environment.
    uv run uvicorn api.main:app --reload
    ```
 
-2. **Using Docker Compose**:
+2. **Using just dev**:
    ```bash
    just dev
    ```
-   This will start the FastAPI server in a container.
+   This will start the FastAPI server with uvicorn in reload mode.
 
 ## API Usage Examples
 
@@ -57,8 +57,14 @@ curl "http://localhost:8080/items/123?q=test"
 
 - `justfile`: For convenient task execution
   - `just setup`: Setup environment and install dependencies
-  - `just dev`: Start the service with Docker Compose
-  - `just stop`: Stop all services
+  - `just dev`: Start the FastAPI server with uvicorn in reload mode
+  - `just up`: Start the service with Docker Compose
+  - `just down`: Stop all services
+  - `just rebuild`: Rebuild and restart API container
+  - `just test`: Run all tests
+  - `just format`: Format code
+  - `just lint`: Lint code
+  - `just clean`: Clean up project
 - `Dockerfile`: For containerization
 - `docker-compose.yml`: For environment setup
 

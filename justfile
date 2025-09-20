@@ -41,6 +41,10 @@ setup:
 # Development Environment Commands
 # ==============================================================================
 
+# Start development server with uvicorn
+dev:
+  @uv run uvicorn api.main:app --reload
+
 # Start development environment with Docker Compose
 up:
   @${DEV_COMPOSE} up --build -d
@@ -74,6 +78,15 @@ lint:
 # TESTING
 # ==============================================================================
 
+# Run all tests
+test: unit-test build-test e2e-test
+    @echo "✅ All tests passed!"
+
+# Run unit tests locally
+unit-test:
+    @echo "🚀 Running unit tests (local)..."
+    @uv run pytest tests/unit -v -s
+
 # Build Docker image for testing without leaving artifacts
 build-test:
     @echo "Building Docker image for testing..."
@@ -85,7 +98,7 @@ build-test:
 # Run e2e tests against containerized application stack (runs from host)
 e2e-test:
     @echo "Running e2e tests..."
-    @USE_SQLITE=false uv run pytest tests/e2e -v -s
+    @uv run pytest tests/e2e -v -s
 
 # ==============================================================================
 # CLEANUP
