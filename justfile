@@ -4,11 +4,13 @@
 
 set dotenv-load 
 
-DEV_PROJECT_NAME := "{{PROJECT_NAME}}-dev"
-TEST_PROJECT_NAME := "{{PROJECT_NAME}}-test"
+PROJECT_NAME := env("PROJECT_NAME", "fastapi-sandbox")
 
-DEV_COMPOSE  := "docker compose -f docker-compose.yml -f docker-compose.dev.override.yml --project-name {{DEV_PROJECT_NAME}}"
-TEST_COMPOSE := "docker compose -f docker-compose.yml -f docker-compose.test.override.yml --project-name {{TEST_PROJECT_NAME}}"
+DEV_PROJECT_NAME := PROJECT_NAME + "-dev"
+TEST_PROJECT_NAME := PROJECT_NAME + "-test"
+
+DEV_COMPOSE  := "docker compose -f docker-compose.yml -f docker-compose.dev.override.yml --project-name " + DEV_PROJECT_NAME
+TEST_COMPOSE := "docker compose -f docker-compose.yml -f docker-compose.test.override.yml --project-name " + TEST_PROJECT_NAME
 
 # default target
 default: help
