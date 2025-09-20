@@ -2,9 +2,31 @@
 
 A minimal FastAPI sandbox environment.
 
+## Project Structure
+
+```
+fastapi-sandbox/
+├── .github/workflows/run-tests.yml
+├── api/
+│   ├── __init__.py
+│   ├── main.py
+│   └── Dockerfile
+├── tests/
+│   ├── conftest.py
+│   ├── e2e/             
+│   ├── intg/            
+│   └── unit/            
+├── docker-compose.dev.yml
+├── docker-compose.test.override.yml
+├── .env.example
+├── justfile
+├── pyproject.toml
+└── README.md
+```
+
 ## Overview
 
-- **FastAPI**: Modern, fast web framework for building APIs with Python 3.7+ based on standard Python type hints.
+A minimal FastAPI sandbox environment.
 
 ## Setup
 
@@ -67,22 +89,3 @@ curl "http://localhost:8080/items/123?q=test"
   - `just clean`: Clean up project
 - `Dockerfile`: For containerization
 - `docker-compose.yml`: For environment setup
-
-## Project Structure
-
-```
-fastapi-sandbox/
-├── api/
-│   ├── __init__.py
-│   ├── main.py          # FastAPI application
-│   └── Dockerfile       # API container
-├── tests/
-│   ├── conftest.py
-│   ├── e2e/             # End-to-end tests
-│   ├── intg/            # Integration tests
-│   └── unit/            # Unit tests
-├── docker-compose.yml   # Docker services
-├── justfile             # Task runner
-├── pyproject.toml       # Project configuration
-└── README.md            # This file
-```
