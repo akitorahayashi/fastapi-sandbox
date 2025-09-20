@@ -5,10 +5,6 @@ from typing import Generator
 
 import httpx
 import pytest
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
 
 # Set environment variables for Docker Compose
 os.environ["API_HOST_BIND_IP"] = os.getenv("API_HOST_BIND_IP", "127.0.0.1")
