@@ -1,7 +1,7 @@
 import httpx
 
 
-class TestAPISandbox:
+class TestAPISandboxE2E:
     """Basic tests for FastAPI sandbox."""
 
     def test_health_endpoint(self, api_base_url):

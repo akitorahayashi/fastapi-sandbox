@@ -77,7 +77,10 @@ fastapi-sandbox/
 │   ├── main.py          # FastAPI application
 │   └── Dockerfile       # API container
 ├── tests/
-│   └── e2e/             # End-to-end tests
+│   ├── conftest.py
+│   ├── e2e/             # End-to-end tests
+│   ├── intg/            # Integration tests
+│   └── unit/            # Unit tests
 ├── docker-compose.yml   # Docker services
 ├── justfile             # Task runner
 ├── pyproject.toml       # Project configuration

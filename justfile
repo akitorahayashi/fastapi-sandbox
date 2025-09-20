@@ -43,9 +43,7 @@ setup:
 
 # Start development server with uvicorn
 dev:
-  @uv run uvicorn api.main:app --reload
-
-# Start development environment with Docker Compose
+  @uv run uvicorn api.main:app --host ${API_HOST_BIND_IP} --port ${API_HOST_PORT} --reload# Start development environment with Docker Compose
 up:
   @${DEV_COMPOSE} up --build -d
 
