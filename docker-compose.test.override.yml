@@ -1,0 +1,4 @@
+services:
+  api:
+    ports: !override
+      - "${API_HOST_BIND_IP}:${API_TEST_PORT}:8080"

@@ -5,5 +5,5 @@ services:
       dockerfile: api/Dockerfile
     env_file:
       - .env
-    ports: !override  
-      - "${API_HOST_PORT}:${API_HOST_PORT}"
+    ports:
+      - "${API_HOST_BIND_IP}:${API_HOST_PORT}:8080"

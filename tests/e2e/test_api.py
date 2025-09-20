@@ -1,13 +1,12 @@
-import requests
-import pytest
+import httpx
 
 
 class TestAPISandbox:
     """Basic tests for FastAPI sandbox."""
 
-    def test_health_endpoint(self, base_url):
+    def test_health_endpoint(self, api_base_url):
         """Test health check endpoint."""
-        response = requests.get(f"{base_url}/health")
+        response = httpx.get(f"{api_base_url}/health")
         assert response.status_code == 200
         data = response.json()
         assert data["status"] == "healthy"

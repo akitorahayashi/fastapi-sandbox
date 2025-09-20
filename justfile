@@ -42,11 +42,11 @@ setup:
 # ==============================================================================
 
 # Start development environment with Docker Compose
-dev:
+up:
   @${DEV_COMPOSE} up --build -d
 
 # Stop development environment
-stop:
+down:
 	@${DEV_COMPOSE} down
 
 # Rebuild and restart API container only
@@ -62,13 +62,13 @@ rebuild:
 
 # Format code using Black and fix issues with Ruff
 format:
-	uv run black .
-	uv run ruff check . --fix
+	@uv run black .
+	@uv run ruff check . --fix
 
 # Perform static code analysis using Black and Ruff
 lint:
-  uv run black --check .
-  uv run ruff check .
+  @uv run black --check .
+  @uv run ruff check .
 
 # ==============================================================================
 # TESTING
@@ -76,18 +76,16 @@ lint:
 
 # Build Docker image for testing without leaving artifacts
 build-test:
-    @echo "Building Docker image for testing (clean build)..."
+    @echo "Building Docker image for testing..."
     @TEMP_IMAGE_TAG=$(date +%s)-build-test; \
-    docker build --tag temp-build-test:$TEMP_IMAGE_TAG -f api/Dockerfile . && \
-    echo "Build successful. Cleaning up temporary image..." && \
-    docker rmi temp-build-test:$TEMP_IMAGE_TAG || true
+    @docker build --tag temp-build-test:$TEMP_IMAGE_TAG -f api/Dockerfile . && \
+    @echo "Build successful. Cleaning up temporary image..." && \
+    @docker rmi temp-build-test:$TEMP_IMAGE_TAG || true
 
-# Run end-to-end tests
+# Run e2e tests against containerized application stack (runs from host)
 e2e-test:
-  uv sync --group dev
-  docker compose up -d
-  uv run pytest tests/e2e
-  docker compose down
+    @echo "Running e2e tests..."
+    @USE_SQLITE=false uv run pytest tests/e2e -v -s
 
 # ==============================================================================
 # CLEANUP
